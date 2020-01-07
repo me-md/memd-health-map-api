@@ -1,1 +1,1 @@
-web gunicorn manage:app
+web gunicorn memd-health-map-api:app
