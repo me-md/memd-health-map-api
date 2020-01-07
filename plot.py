@@ -14,16 +14,16 @@ import io
 from datetime import datetime
 
 # connect to database
-from sqlalchemy import create_engine
-POSTGRES_ADDRESS = 'localhost'
-POSTGRES_PORT = '5432'
-POSTGRES_USERNAME = 'nathanthomas'
-POSTGRES_PASSWORD = 'cashflow'
-POSTGRES_DBNAME = 'conditions'
-postgres_str = (f'postgresql://{POSTGRES_USERNAME}:{POSTGRES_PASSWORD}@{POSTGRES_ADDRESS}:{POSTGRES_PORT}/{POSTGRES_DBNAME}')
-
-# Create the connection
-cnx = create_engine(postgres_str)
+# from sqlalchemy import create_engine
+# POSTGRES_ADDRESS = 'localhost'
+# POSTGRES_PORT = '5432'
+# POSTGRES_USERNAME = 'nathanthomas'
+# POSTGRES_PASSWORD = 'cashflow'
+# POSTGRES_DBNAME = 'conditions'
+# postgres_str = (f'postgresql://{POSTGRES_USERNAME}:{POSTGRES_PASSWORD}@{POSTGRES_ADDRESS}:{POSTGRES_PORT}/{POSTGRES_DBNAME}')
+#
+# # Create the connection
+# cnx = create_engine(postgres_str)
 
 conditions = pd.read_sql_query('SELECT * FROM conditions_map_conditions;', cnx)
 
