@@ -13,18 +13,17 @@ import numpy as np
 import io
 from datetime import datetime
 
-# from sqlalchemy import create_engine
-# POSTGRES_ADDRESS = 'localhost'
-# POSTGRES_PORT = '5432'
-# POSTGRES_USERNAME = 'nathanthomas'
-# POSTGRES_PASSWORD = 'cashflow'
-# POSTGRES_DBNAME = 'conditions'
-# postgres_str = (f'postgresql://{POSTGRES_USERNAME}:{POSTGRES_PASSWORD}@{POSTGRES_ADDRESS}:{POSTGRES_PORT}/{POSTGRES_DBNAME}')
-#
-# cnx = create_engine(postgres_str)
-SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+from sqlalchemy import create_engine
+POSTGRES_ADDRESS = 'localhost'
+POSTGRES_PORT = '5432'
+POSTGRES_USERNAME = 'nathanthomas'
+POSTGRES_PASSWORD = 'cashflow'
+POSTGRES_DBNAME = 'conditions'
+postgres_str = (f'postgresql://{POSTGRES_USERNAME}:{POSTGRES_PASSWORD}@{POSTGRES_ADDRESS}:{POSTGRES_PORT}/{POSTGRES_DBNAME}')
 
-conditions = pd.read_sql_query('SELECT * FROM conditions_map_conditions;', SQLALCHEMY_DATABASE_URI)
+cnx = create_engine(postgres_str)
+
+conditions = pd.read_sql_query('SELECT * FROM conditions_map_conditions;', cnx)
 
 conditions = conditions[['name', 'state']]
 conditions_map_data = conditions.rename(index=int, columns={'name':'CONDITION', 'state':'STATE_ABBR'})
