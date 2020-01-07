@@ -22,8 +22,9 @@ from datetime import datetime
 # postgres_str = (f'postgresql://{POSTGRES_USERNAME}:{POSTGRES_PASSWORD}@{POSTGRES_ADDRESS}:{POSTGRES_PORT}/{POSTGRES_DBNAME}')
 #
 # cnx = create_engine(postgres_str)
+SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 
-conditions = pd.read_sql_query('SELECT * FROM conditions_map_conditions;', cnx)
+conditions = pd.read_sql_query('SELECT * FROM conditions_map_conditions;', SQLALCHEMY_DATABASE_URI)
 
 conditions = conditions[['name', 'state']]
 conditions_map_data = conditions.rename(index=int, columns={'name':'CONDITION', 'state':'STATE_ABBR'})

@@ -13,9 +13,9 @@ import numpy as np
 import io
 from datetime import datetime
 
-# connect to database
+# # connect to database
 # from sqlalchemy import create_engine
-# POSTGRES_ADDRESS = 'localhost'
+# POSTGRES_ADDRESS = 'postgres://snuzubqvmxjiew:a3c8d997e10c9097bbc894b2a5f32bd338d15759cd79c8f647ced39dd9cd3153@ec2-54-243-193-59.compute-1.amazonaws.com:5432/dc4ksnmkdjs7dd'
 # POSTGRES_PORT = '5432'
 # POSTGRES_USERNAME = 'nathanthomas'
 # POSTGRES_PASSWORD = 'cashflow'
@@ -25,7 +25,11 @@ from datetime import datetime
 # # Create the connection
 # cnx = create_engine(postgres_str)
 
-conditions = pd.read_sql_query('SELECT * FROM conditions_map_conditions;', cnx)
+SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+
+conditions = pd.read_sql_query('SELECT * FROM conditions_map_conditions;', SQLALCHEMY_DATABASE_URI)
+
+# conditions = pd.read_sql_query('SELECT * FROM conditions_map_conditions;', cnx)
 
 conditions = conditions[['name', 'state']]
 conditions_map_data = conditions.rename(index=int, columns={'name':'CONDITION', 'state':'STATE_ABBR'})
