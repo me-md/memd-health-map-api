@@ -57,7 +57,8 @@ def render_map(condition):
                                  scheme='natural_breaks', k=6,
                                  legend=True,
                                  edgecolor='black',
-                                 linewidth=0.8);
+                                 linewidth=0.8,
+                                 legend_kwds=dict(title="Number of MeMD Users\n", frameon=False));
     ax.axis('off')
     ax.set_title(f'MeMD {condition.capitalize()} Diagnosis Across the US', fontdict={'fontsize': '35', 'fontweight' : '5'})
     ax.get_legend().set_bbox_to_anchor((.22,.29))
@@ -67,7 +68,7 @@ def render_map(condition):
     ax.get_figure()
     return ax
 
-    
+
 
     # bytes_image = io.BytesIO()
     # plt.savefig(bytes_image, format='png')
