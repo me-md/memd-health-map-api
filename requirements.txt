@@ -19,7 +19,7 @@ itsdangerous==1.1.0
 Jinja2==2.10.3
 joblib==0.14.1
 kiwisolver==1.1.0
-Mako==1.1.0
+Mako==1.2.2
 mapclassify==2.2.0
 MarkupSafe==1.1.1
 marshmallow==2.14.0
